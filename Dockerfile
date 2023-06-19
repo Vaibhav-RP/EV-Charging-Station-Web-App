@@ -1,5 +1,10 @@
-# base docker image
-FROM openjdk:11
-LABEL maintainer="VaibhavPatilEVStation.net"
-ADD build/libs/veridic-0.0.1-SNAPSHOT.jar EVSation-docker.jar
-ENTRYPOINT [ "java","-jar","EVSation-docker.jar" ]
+
+FROM adoptopenjdk:11-jdk-hotspot
+
+WORKDIR /app
+
+COPY build/libs/veridic-0.0.1-SNAPSHOT.jar /app
+
+EXPOSE 8081
+
+ENTRYPOINT ["java", "-jar", "/app/veridic-0.0.1-SNAPSHOT.jar"]
